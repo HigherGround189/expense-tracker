@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="dist/", static_url_path="")
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
 oauth = OAuth(app)

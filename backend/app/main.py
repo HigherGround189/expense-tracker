@@ -1,5 +1,5 @@
 import logging 
-from flask import redirect, url_for, session, render_template_string
+from flask import redirect, url_for, session, send_from_directory
 from app_setup import app, oauth, logout_base
 from logging_setup import logging_setup
 
@@ -8,22 +8,7 @@ logger = logging.getLogger(__name__)
 
 @app.route("/")
 def index():
-    user = session.get("user")
-    if user:        
-        return render_template_string('''
-            <h1>Welcome, {{ user['preferred_username'] }}, {{ user['sub'] }}!</h1>
-            <h2>All data: {{ user }}</h2>
-            <form action="{{ url_for('logout') }}" method="post">
-                <button type="submit">Logout</button>
-            </form>
-        ''', user=user)
-    else:        
-        return render_template_string('''
-            <h1>Hello, you are not logged in.</h1>
-            <form action="{{ url_for('login') }}" method="post">
-                <button type="submit">Login</button>
-            </form>
-        ''')
+    return send_from_directory(app.static_folder, "index.html")
 
 # Login page
 @app.route("/login", methods=["POST"])
