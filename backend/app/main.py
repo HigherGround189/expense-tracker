@@ -8,14 +8,14 @@ logger = logging.getLogger(__name__)
 
 @app.route("/")
 def index():
-    return send_from_directory(app.static_folder, "index.html")
-
-# Login page
-@app.route("/login", methods=["POST"])
-def login():
-    redirect_uri = url_for("auth", _external=True)
-    print("Before redirect, session contains:", dict(session))
-    return oauth.keycloak.authorize_redirect(redirect_uri)
+    user = session.get("user")
+    if user:        
+        return send_from_directory(app.static_folder, "index.html")
+    
+    else:
+        redirect_uri = url_for("auth", _external=True)
+        print("Before redirect, session contains:", dict(session))
+        return oauth.keycloak.authorize_redirect(redirect_uri)
 
 # Auth callback
 @app.route("/auth")
