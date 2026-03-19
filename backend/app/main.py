@@ -1,5 +1,10 @@
+import logging 
 from flask import redirect, url_for, session, render_template_string
 from app_setup import app, oauth, logout_base
+from logging_setup import logging_setup
+
+logging_setup()
+logger = logging.getLogger(__name__)
 
 @app.route("/")
 def index():

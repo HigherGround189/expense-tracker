@@ -1,0 +1,12 @@
+{% if user %}
+  <h1>Welcome, {{ user['preferred_username'] }}, {{ user['sub'] }}!</h1>
+  <h2>All data: {{ user }}</h2>
+  <form action="{{ url_for('logout') }}" method="post">
+      <button type="submit">Logout</button>
+  </form>
+{% else %}
+  <h1>Hello, you are not logged in.</h1>
+  <form action="{{ url_for('login') }}" method="post">
+      <button type="submit">Login</button>
+  </form>
+{% endif %}
