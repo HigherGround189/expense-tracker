@@ -1,12 +1,14 @@
-{% if user %}
-  <h1>Welcome, {{ user['preferred_username'] }}, {{ user['sub'] }}!</h1>
-  <h2>All data: {{ user }}</h2>
-  <form action="{{ url_for('logout') }}" method="post">
-      <button type="submit">Logout</button>
-  </form>
-{% else %}
-  <h1>Hello, you are not logged in.</h1>
-  <form action="{{ url_for('login') }}" method="post">
-      <button type="submit">Login</button>
-  </form>
-{% endif %}
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
+    <script type="module" crossorigin src="/assets/index-Cbn9WGRa.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DNCJDpjk.css">
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
