@@ -1,6 +1,7 @@
 <template>
   <div>
     Hello World
+    <DatePicker v-model="date" />
   </div>
 </template>
 
