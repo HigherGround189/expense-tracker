@@ -1,8 +1,6 @@
 <template>
   <div>
-    Hello World Sanity Check
-    <DatePicker v-model="date" />
-    <p>{{ this.userinfo }}</p>
+    <Header :user="this.userinfo"/>
   </div>
 </template>
 
@@ -15,7 +13,6 @@
     },
 
     mounted() {
-      console.log("Mounted")
       fetch("/api/user-info")
       .then(response => response.json())
       .then(data => this.userinfo = data);
