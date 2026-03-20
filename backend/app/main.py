@@ -1,5 +1,5 @@
 import logging 
-from flask import redirect, url_for, session, send_from_directory
+from flask import redirect, url_for, session, send_from_directory, jsonify
 from app_setup import app, oauth, logout_base
 from logging_setup import logging_setup
 
@@ -16,6 +16,21 @@ def index():
         redirect_uri = url_for("auth", _external=True)
         print("Before redirect, session contains:", dict(session))
         return oauth.keycloak.authorize_redirect(redirect_uri)
+
+@app.route("/api/user-info")
+def user_info():
+    user = session.get("user")
+    if user:
+        return jsonify({
+            "authenticated": True,
+            "userinfo": user 
+        })
+    
+    else:
+        return jsonify({
+            "authenticated": False,
+            "userinfo": None
+        })
 
 # Auth callback
 @app.route("/auth")
